@@ -1,0 +1,22 @@
+server:
+  port: 8079
+
+spring:
+  liquibase:
+    change-log: db/changelog-master.yaml
+    enabled: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5429/application
+    username: admin
+    password: admin
+
+  jpa:
+    show-sql: true
+
+    hibernate:
+      ddl-auto: update
+
+jwt:
+  secret: llav3ji2019
+  token-duration: 604800

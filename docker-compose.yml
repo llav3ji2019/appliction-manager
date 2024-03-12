@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  pg-db:
+  app-db:
     image: postgres:15
     restart: always
     environment:
@@ -10,7 +10,7 @@ services:
     ports:
       - '5429:5432'
     volumes:
-      - db:/var/lib/postgresql/data3
+      - db:/var/lib/postgresql/application/data
 
 volumes:
   db:
