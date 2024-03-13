@@ -2,7 +2,7 @@ package com.llav3ji2019.application.applicationmanager.core.user;
 
 import com.llav3ji2019.application.applicationmanager.core.user.db.RoleRepository;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
-import com.llav3ji2019.application.applicationmanager.core.user.db.entity.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
 import com.llav3ji2019.application.applicationmanager.public_interface.user.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

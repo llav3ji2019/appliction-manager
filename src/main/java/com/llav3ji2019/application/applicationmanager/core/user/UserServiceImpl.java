@@ -3,8 +3,10 @@ package com.llav3ji2019.application.applicationmanager.core.user;
 import com.llav3ji2019.application.applicationmanager.core.user.db.RoleRepository;
 import com.llav3ji2019.application.applicationmanager.core.user.db.UserRepository;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
-import com.llav3ji2019.application.applicationmanager.core.user.db.entity.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.User;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.UserDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.mapper.UserMapper;
 import com.llav3ji2019.application.applicationmanager.public_interface.user.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -21,6 +24,7 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final UserMapper userMapper;
 
     @Override
     public User findByUsername(String username) {
@@ -61,5 +65,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 true,
                 true,
                 new HashSet<>());
+    }
+
+    @Override
+    public List<UserDto> findAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toDto)
+                .toList();
     }
 }

@@ -13,3 +13,5 @@ databaseChangeLog:
       file: db/changelog/006-create-clients.sql
   - include:
       file: db/changelog/007-create-client-roles-relations.sql
+  - include:
+      file: db/changelog/009-delete-constraints-application.sql

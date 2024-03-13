@@ -1,5 +1,6 @@
 package com.llav3ji2019.application.applicationmanager.core.user.db.entity;
 
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
 import jakarta.persistence.*;
 import lombok.*;
 

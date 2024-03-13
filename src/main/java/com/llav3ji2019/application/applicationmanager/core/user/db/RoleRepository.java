@@ -1,7 +1,7 @@
 package com.llav3ji2019.application.applicationmanager.core.user.db;
 
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
-import com.llav3ji2019.application.applicationmanager.core.user.db.entity.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

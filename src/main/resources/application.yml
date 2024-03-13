@@ -20,3 +20,6 @@ spring:
 jwt:
   secret: bGxhdjNqaTIwMTlsbGF2M2ppMjAxOWxsYXYzamkyMDE5
   token-duration: 604800
+
+pagination:
+  page-size: 5

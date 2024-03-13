@@ -1,6 +1,6 @@
 package com.llav3ji2019.application.applicationmanager.core.auth;
 
-import com.llav3ji2019.application.applicationmanager.core.user.db.entity.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.User;
 import com.llav3ji2019.application.applicationmanager.public_interface.dto.JwtAuthenticationResponse;
 import com.llav3ji2019.application.applicationmanager.public_interface.dto.SignInRequest;
