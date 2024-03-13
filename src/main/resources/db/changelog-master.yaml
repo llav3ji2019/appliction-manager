@@ -1,3 +1,15 @@
 databaseChangeLog:
   - include:
       file: db/changelog/001-create-client-schema.sql
+  - include:
+      file: db/changelog/002-edit-delete-role.sql
+  - include:
+      file: db/changelog/003-create-role-schema.sql
+  - include:
+      file: db/changelog/004-create-user-role-schema.sql
+  - include:
+      file: db/changelog/005-create-roles.sql
+  - include:
+      file: db/changelog/006-create-clients.sql
+  - include:
+      file: db/changelog/007-create-client-roles-relations.sql

@@ -18,5 +18,5 @@ spring:
       ddl-auto: update
 
 jwt:
-  secret: llav3ji2019
+  secret: bGxhdjNqaTIwMTlsbGF2M2ppMjAxOWxsYXYzamkyMDE5
   token-duration: 604800

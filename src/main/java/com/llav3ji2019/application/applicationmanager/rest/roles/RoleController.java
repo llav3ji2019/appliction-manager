@@ -4,6 +4,7 @@ import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleR
 import com.llav3ji2019.application.applicationmanager.public_interface.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class RoleController {
     private final UserService userService;
 
     @PutMapping("/update")
-    public void updateUserRole(RoleRequest request) {
-        userService.updateRole(request.getUsername(), request.getRole());
+    public void addUserRole(@RequestBody RoleRequest request) {
+        userService.addRoleToUser(request.getUsername(), request.getRole());
     }
 }

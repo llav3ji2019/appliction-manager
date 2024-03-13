@@ -1,6 +1,6 @@
 package com.llav3ji2019.application.applicationmanager.core.user.db.entity;
 
-public enum UserRole {
+public enum RoleName {
     USER,
     OPERATOR,
     ADMIN

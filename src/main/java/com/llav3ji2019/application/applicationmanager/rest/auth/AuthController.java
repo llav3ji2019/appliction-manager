@@ -4,11 +4,16 @@ import com.llav3ji2019.application.applicationmanager.core.auth.AuthenticationSe
 import com.llav3ji2019.application.applicationmanager.public_interface.dto.JwtAuthenticationResponse;
 import com.llav3ji2019.application.applicationmanager.public_interface.dto.SignInRequest;
 import com.llav3ji2019.application.applicationmanager.public_interface.dto.SignUpRequest;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.io.Encoders;
+import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/auth")

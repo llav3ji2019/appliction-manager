@@ -1,5 +1,7 @@
 package com.llav3ji2019.application.applicationmanager.core.jwt;
 
+import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
+import com.llav3ji2019.application.applicationmanager.core.user.db.entity.RoleName;
 import jakarta.annotation.PostConstruct;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -42,7 +44,14 @@ public class JwtService {
         if (userDetails instanceof User customUserDetails) {
             claims.put("id", customUserDetails.getId());
             claims.put("email", customUserDetails.getEmail());
-            claims.put("role", customUserDetails.getRole());
+            claims.put("role", String.join(
+                    " ",
+                    customUserDetails.getRoles()
+                            .stream()
+                            .map(Role::getName)
+                            .map(RoleName::name)
+                            .toList())
+            );
         }
         return generateToken(claims, userDetails);
     }

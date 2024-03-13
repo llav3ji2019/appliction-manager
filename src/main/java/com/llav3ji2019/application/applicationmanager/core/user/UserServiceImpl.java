@@ -1,8 +1,12 @@
 package com.llav3ji2019.application.applicationmanager.core.user;
 
+import com.llav3ji2019.application.applicationmanager.core.user.db.RoleRepository;
 import com.llav3ji2019.application.applicationmanager.core.user.db.UserRepository;
+import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
+import com.llav3ji2019.application.applicationmanager.core.user.db.entity.RoleName;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.User;
 import com.llav3ji2019.application.applicationmanager.public_interface.user.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,22 +19,27 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public User findByUsername(String username) {
-        return repository.findByUsername(username)
+        return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Error: Username is not found in db"));
     }
 
     @Override
-    public void updateRole(String username, String role) {
-        repository.updateRoleByUsername(username, role);
+    @Transactional
+    public void addRoleToUser(String username, RoleName name) {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("No user found"));
+        Role role = roleRepository.findByName(name).orElseThrow(() -> new RuntimeException("No role found"));
+        user.getRoles().add(role);
+        userRepository.save(user);
     }
 
     @Override
     public User save(User user) {
-        return repository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
