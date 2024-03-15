@@ -1,6 +1,6 @@
 package com.llav3ji2019.application.applicationmanager.core.application.db.entity;
 
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.ApplicationStatus;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.application.ApplicationStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

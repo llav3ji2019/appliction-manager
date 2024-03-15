@@ -2,8 +2,8 @@ package com.llav3ji2019.application.applicationmanager.public_interface.mapper;
 
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.User;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.UserDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.role.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.user.UserDto;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;

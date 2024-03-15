@@ -25,5 +25,4 @@ public class Application {
                 .bannerMode(Banner.Mode.OFF)
                 .run(args);
     }
-
 }

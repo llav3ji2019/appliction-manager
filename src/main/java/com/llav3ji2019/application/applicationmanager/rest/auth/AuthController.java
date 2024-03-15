@@ -1,33 +1,44 @@
 package com.llav3ji2019.application.applicationmanager.rest.auth;
 
-import com.llav3ji2019.application.applicationmanager.core.auth.AuthenticationService;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.JwtAuthenticationResponse;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.SignInRequest;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.SignUpRequest;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
+import com.llav3ji2019.application.applicationmanager.public_interface.auth.AuthServiceV1;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.auth.JwtAuthenticationDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.auth.SignInDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.auth.SignUpDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Base64;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/auth/v1")
 @RequiredArgsConstructor
+@Tag(name="Контроллер аутификации", description="Контроллер управляет процессом аутефикации пользователей")
 public class AuthController {
-    private final AuthenticationService authenticationService;
+    private final AuthServiceV1 authenticationService;
 
     @PostMapping("/sign-up")
-    public JwtAuthenticationResponse signUp(@RequestBody SignUpRequest request) {
-        return authenticationService.signUp(request);
+    @Operation(
+            summary = "Регистрация пользователя",
+            description = "Позволяет зарегистрировать пользователя"
+    )
+    public JwtAuthenticationDto signUp(
+            @RequestBody @Parameter(description = "Необходимые данные для регистрации") SignUpDto dto
+    ) {
+        return authenticationService.signUp(dto);
     }
 
     @PostMapping("/sign-in")
-    public JwtAuthenticationResponse signIn(@RequestBody SignInRequest request) {
-        return authenticationService.signIn(request);
+    @Operation(
+            summary = "Вход в систему",
+            description = "Позволяет пользователю войти в систему"
+    )
+    public JwtAuthenticationDto signIn(
+            @RequestBody @Parameter(description = "Необходимые данные для входа в систему") SignInDto dto
+    ) {
+        return authenticationService.signIn(dto);
     }
 }

@@ -23,3 +23,13 @@ jwt:
 
 pagination:
   page-size: 5
+
+security:
+  bearer_prefix: "Bearer "
+  header_name: "Authorization"
+
+dadata:
+  client:
+    token: "9895492db81109ba69b27f72c448b27c0dc99701"
+    secret-key: "15c1868efa2edf1256db7ab1e22830a7c5388a59"
+    phone-end-point: "/api/v1/clean/phone"

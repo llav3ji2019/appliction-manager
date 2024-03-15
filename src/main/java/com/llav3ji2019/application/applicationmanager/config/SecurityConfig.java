@@ -1,7 +1,7 @@
 package com.llav3ji2019.application.applicationmanager.config;
 
-import com.llav3ji2019.application.applicationmanager.public_interface.user.UserService;
-import com.llav3ji2019.application.applicationmanager.security.JwtAuthenticationFilter;
+import com.llav3ji2019.application.applicationmanager.core.security.jwt.JwtAuthenticationFilter;
+import com.llav3ji2019.application.applicationmanager.public_interface.user.UserServiceV1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final UserService userService;
+    private final UserServiceV1 userService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -62,6 +62,7 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))

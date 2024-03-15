@@ -1,8 +1,8 @@
 package com.llav3ji2019.application.applicationmanager.public_interface.mapper;
 
 import com.llav3ji2019.application.applicationmanager.core.application.db.entity.Application;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.ApplicationDto;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.ApplicationStatus;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.application.ApplicationDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.application.ApplicationStatus;
 import org.springframework.stereotype.Component;
 
 @Component

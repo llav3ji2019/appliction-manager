@@ -1,6 +1,6 @@
 package com.llav3ji2019.application.applicationmanager.core.user.db.entity;
 
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.role.RoleName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

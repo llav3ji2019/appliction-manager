@@ -3,11 +3,13 @@ package com.llav3ji2019.application.applicationmanager.core.user;
 import com.llav3ji2019.application.applicationmanager.core.user.db.RoleRepository;
 import com.llav3ji2019.application.applicationmanager.core.user.db.UserRepository;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.Role;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.RoleName;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.role.RoleDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.role.RoleName;
 import com.llav3ji2019.application.applicationmanager.core.user.db.entity.User;
-import com.llav3ji2019.application.applicationmanager.public_interface.dto.UserDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.dto.user.UserDto;
+import com.llav3ji2019.application.applicationmanager.public_interface.exception.ApiException;
 import com.llav3ji2019.application.applicationmanager.public_interface.mapper.UserMapper;
-import com.llav3ji2019.application.applicationmanager.public_interface.user.UserService;
+import com.llav3ji2019.application.applicationmanager.public_interface.user.UserServiceV1;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +19,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceV1Impl implements UserServiceV1, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
@@ -29,14 +30,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Error: Username is not found in db"));
+                .orElseThrow(() -> new ApiException("Error: Username is not found in db"));
     }
 
     @Override
     @Transactional
-    public void addRoleToUser(String username, RoleName name) {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("No user found"));
-        Role role = roleRepository.findByName(name).orElseThrow(() -> new RuntimeException("No role found"));
+    public void addRoleToUser(RoleDto dto, RoleName name) {
+        User user = userRepository.findByUsername(dto.username())
+                .orElseThrow(() -> new ApiException("No user found"));
+        Role role = roleRepository.findByName(name)
+                .orElseThrow(() -> new ApiException("No role found"));
         user.getRoles().add(role);
         userRepository.save(user);
     }
@@ -54,9 +57,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUsername(username);
-        if (Objects.isNull(user)) {
-            throw new UsernameNotFoundException(String.format("User %s isn't found", username));
-        }
+
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
